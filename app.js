@@ -51,7 +51,7 @@ mongo.connect(url, function(err,db){
 	var collection= db.collection('restaurants');
 	var name= prompt("what is the name of the restaurant that you want to erase");
 
-	collection.delete({"name":name},function(err,doc){
+	collection.deleteOne({"name":name},function(err,doc){
 		console.log("done");
 	});
 });
