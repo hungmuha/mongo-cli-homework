@@ -41,7 +41,7 @@ mongo.connect(url, function(err,db){
 	var editZip= prompt("what is the new Zipcode?");
 	var editYelp= prompt("what is the new Yelp");
 
-	collection.update({"name":editName, "address":{"street":editStreet,"Zip":editZip},"yelp":editYelp},function(err,doc){
+	collection.find({"name":editName}).update({"address":{"street":editStreet,"Zip":editZip},"yelp":editYelp},function(err,doc){
 		console.log("done");
 	});
 
