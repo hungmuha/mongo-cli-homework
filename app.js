@@ -2,7 +2,7 @@ var mongo = require("mongodb").MongoClient;
 var prompt =require("prompt-sync")();
 var url = "mongodb://localhost:27017/restaurants_db";
 
-// mongo.connect(url, function(err, db){
+mongo.connect(url, function(err, db){
 	var collection = db.collection('restaurants');
 	var allChoice=prompt("type 'all' and press enter to display all restaurants' name: ");
 	if (allChoice == "all"){
@@ -41,11 +41,11 @@ mongo.connect(url, function(err,db){
 	var editZip= prompt("what is the new Zipcode?");
 	var editYelp= prompt("what is the new Yelp");
 
-	collection.find({"name":editName}).update({"address":{"street":editStreet,"Zip":editZip},"yelp":editYelp},function(err,doc){
+	collection.update({"name":editName},{$set:{"address":{"street":editStreet,"Zip":editZip},"yelp":editYelp}},function(err,doc){
 		console.log("done");
 	});
-
 });
+
 //delete from the database
 mongo.connect(url, function(err,db){
 	var collection= db.collection('restaurants');
